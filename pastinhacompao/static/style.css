@@ -1,8 +1,144 @@
-body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
-.container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-form { display: flex; gap: 10px; margin-bottom: 20px; }
-input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; flex: 1; }
-button { background: #28a745; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; }
-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-th, td { border-bottom: 1px solid #ddd; padding: 10px; text-align: left; }
-th { background-color: #f8f9fa; }
+/* Importando a fonte elegante */
+@import url('https://fonts.googleapis.com/css2?family=Baskervville&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Baskervville', serif;
+    /* Gradiente clássico Frutiger Aero (Céu/Água) */
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Centraliza verticalmente */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    padding: 30px;
+    /* Efeito de Vidro (Glossy/Glassmorphism) */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.5);
+
+    /* Animação de entrada suave */
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1 {
+    color: #1a5f7a;
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Estilização do Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #abdbe3;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    box-shadow: 0 0 8px #74ebd5;
+    border-color: #74ebd5;
+}
+
+button {
+    background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Tabela com scroll caso cresça muito */
+table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+th {
+    color: #1a5f7a;
+    padding: 10px;
+    border-bottom: 2px solid #74ebd5;
+}
+
+td {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 12px;
+    text-align: center;
+}
+
+td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+td:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Classe de animação para quando cadastrar (pode ser aplicada via JS ou apenas no carregamento) */
+tr {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
