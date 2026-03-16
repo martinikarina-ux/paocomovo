@@ -2,31 +2,39 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Clientes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Cadastro de Clientes</title>
 </head>
 <body>
-    <h1>Clientes Cadastrados</h1>
-    <a href="{{ url_for('cadastro') }}" class="btn">Cadastrar Novo Cliente</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cliente in clientes %}
-            <tr>
-                <td>{{ cliente[0] }}</td>
-                <td>{{ cliente[1] }}</td>
-                <td>{{ cliente[2] }}</td>
-                <td>{{ cliente[3] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Cadastro de Clientes</h1>
+        
+        <form action="/adicionar" method="POST">
+            <input type="text" name="nome" placeholder="Nome Completo" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <hr>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente[0] }}</td>
+                    <td>{{ cliente[1] }}</td>
+                    <td>{{ cliente[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

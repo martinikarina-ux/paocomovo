@@ -1,51 +1,44 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
-DATABASE = 'clientes.db'
 
-# Função para criar o banco de dados e a tabela se não existir
+# Função para conectar ao banco e criar a tabela se não existir
 def init_db():
-    conn = sqlite3.connect(DATABASE)
+    conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS clientes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT NOT NULL,
-            email TEXT NOT NULL UNIQUE,
-            telefone TEXT
+            email TEXT NOT NULL
         )
     ''')
     conn.commit()
     conn.close()
 
-# Página inicial: lista de clientes
 @app.route('/')
 def index():
-    conn = sqlite3.connect(DATABASE)
+    conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM clientes")
     clientes = cursor.fetchall()
     conn.close()
     return render_template('index.html', clientes=clientes)
 
-# Página de cadastro
-@app.route('/cadastro', methods=['GET', 'POST'])
-def cadastro():
-    if request.method == 'POST':
-        nome = request.form['nome']
-        email = request.form['email']
-        telefone = request.form['telefone']
-
-        conn = sqlite3.connect(DATABASE)
+@app.route('/adicionar', methods=['POST'])
+def adicionar():
+    nome = request.form.get('nome')
+    email = request.form.get('email')
+    
+    if nome and email:
+        conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO clientes (nome, email, telefone) VALUES (?, ?, ?)",
-                       (nome, email, telefone))
+        cursor.execute("INSERT INTO clientes (nome, email) VALUES (?, ?)", (nome, email))
         conn.commit()
         conn.close()
-        return redirect(url_for('index'))
-
-    return render_template('cadastro.html')
+    
+    return redirect('/')
 
 if __name__ == '__main__':
     init_db()
