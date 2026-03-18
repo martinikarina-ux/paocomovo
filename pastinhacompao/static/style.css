@@ -142,3 +142,89 @@ tr {
     }
 }
 
+/* Container que ocupa a tela toda atrás do conteúdo */
+.bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Fica atrás do seu formulário */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Estilo da Bolha (Aspecto Glossy/Frutiger) */
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 40%, rgba(100, 200, 255, 0.2) 80%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 10px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.1);
+    animation: floatUp 15s infinite linear;
+}
+
+/* Animação de subir e balançar */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120vh) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Variando posições e tamanhos para não ficarem iguais */
+.bubble:nth-child(1) {
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    animation-duration: 12s;
+}
+
+.bubble:nth-child(2) {
+    left: 30%;
+    width: 30px;
+    height: 30px;
+    animation-duration: 18s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(3) {
+    left: 55%;
+    width: 70px;
+    height: 70px;
+    animation-duration: 25s;
+    animation-delay: 5s;
+}
+
+.bubble:nth-child(4) {
+    left: 80%;
+    width: 40px;
+    height: 40px;
+    animation-duration: 15s;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(5) {
+    left: 90%;
+    width: 25px;
+    height: 25px;
+    animation-duration: 20s;
+    animation-delay: 8s;
+}
