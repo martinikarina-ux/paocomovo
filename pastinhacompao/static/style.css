@@ -228,3 +228,118 @@ tr {
     animation-duration: 20s;
     animation-delay: 8s;
 }
+
+/* ... manter o código anterior e adicionar/substituir estes: ... */
+
+/* Ajuste para alinhar data e toggle lado a lado */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    color: #1a5f7a;
+}
+
+/* --- BOTÃO GLOSSY 3D --- */
+.btn-glossy {
+    background: linear-gradient(to bottom,
+            #a0e4ff 0%,
+            #4facfe 45%,
+            #0078d7 50%,
+            #005a9e 100%);
+    color: white;
+    border: 1px solid #004a80;
+    padding: 14px;
+    border-radius: 50px;
+    /* Mais arredondado */
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.8), 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+.btn-glossy:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* --- TOGGLE SWITCH --- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #d1d1d1, #f0f0f0);
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid #bbb;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 2px;
+    background: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+input:checked+.slider {
+    background: linear-gradient(to bottom, #72f23a, #3fa51a);
+}
+
+input:checked+.slider:before {
+    transform: translateX(25px);
+}
+
+/* Estilo do Status na Tabela */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.active {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.inactive {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+

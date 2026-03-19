@@ -3,15 +3,17 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Função para conectar ao banco e criar a tabela se não existir
 def init_db():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
+    # Atualizado para incluir data_nascimento e status
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS clientes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT NOT NULL,
-            email TEXT NOT NULL
+            email TEXT NOT NULL,
+            data_nasc TEXT,
+            status TEXT
         )
     ''')
     conn.commit()
@@ -30,11 +32,15 @@ def index():
 def adicionar():
     nome = request.form.get('nome')
     email = request.form.get('email')
+    data_nasc = request.form.get('data_nasc')
+    # Verifica se o toggle está marcado (on) ou não
+    status = "Ativo" if request.form.get('status') else "Inativo"
     
     if nome and email:
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO clientes (nome, email) VALUES (?, ?)", (nome, email))
+        cursor.execute("INSERT INTO clientes (nome, email, data_nasc, status) VALUES (?, ?, ?, ?)", 
+                       (nome, email, data_nasc, status))
         conn.commit()
         conn.close()
     
@@ -43,3 +49,5 @@ def adicionar():
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
+
+    

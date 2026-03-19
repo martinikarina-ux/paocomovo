@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Cadastro de Clientes</title>
+    <title>Cadastro de Clientes - Frutiger Aero</title>
 </head>
 
 <body>
@@ -14,7 +14,22 @@
         <form action="/adicionar" method="POST">
             <input type="text" name="nome" placeholder="Nome Completo" required>
             <input type="email" name="email" placeholder="E-mail" required>
-            <button type="submit">Cadastrar</button>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label>Nascimento:</label>
+                    <input type="date" name="data_nasc">
+                </div>
+                <div class="input-group toggle-group">
+                    <label>Status Ativo:</label>
+                    <label class="switch">
+                        <input type="checkbox" name="status" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-glossy">Cadastrar</button>
         </form>
 
         <hr>
@@ -25,6 +40,8 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>E-mail</th>
+                    <th>Nascimento</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +50,9 @@
                     <td>{{ cliente[0] }}</td>
                     <td>{{ cliente[1] }}</td>
                     <td>{{ cliente[2] }}</td>
+                    <td>{{ cliente[3] }}</td>
+                    <td><span class="status-badge {{ 'active' if cliente[4] == 'Ativo' else 'inactive' }}">{{ cliente[4]
+                            }}</span></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -46,7 +66,7 @@
         <div class="bubble"></div>
         <div class="bubble"></div>
     </div>
-
+    
 </body>
 
 </html>
