@@ -342,4 +342,67 @@ input:checked+.slider:before {
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+/* 1. Definição de Variáveis para facilitar a troca */
+:root {
+    --bg-main: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --text-h1: #1a5f7a;
+}
 
+body.dark-mode {
+    --bg-main: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --card-bg: rgba(30, 41, 59, 0.8);
+    --text-h1: #38bdf8;
+}
+
+/* 2. Aplicação das variáveis nos elementos existentes */
+body {
+    background: var(--bg-main) !important;
+}
+
+.container {
+    background: var(--card-bg) !important;
+}
+
+h1 {
+    color: var(--text-h1) !important;
+    margin-bottom: 0;
+    /* Remove a margem para alinhar com o botão */
+}
+
+/* 3. Estilo do novo Header e Botão */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.btn-theme-toggle {
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px #74ebd5;
+}
+
+.theme-icon::before {
+    content: "☀️";
+}
+
+body.dark-mode .theme-icon::before {
+    content: "🌙";
+}
